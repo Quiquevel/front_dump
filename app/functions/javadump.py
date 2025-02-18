@@ -54,8 +54,6 @@ async def do_dump_project():
 
             # Verify that a valid problem is selected
             if st.session_state.selected_problem != SELECT_PROBLEM:
-                st.write(f"Selected Problem: {st.session_state.selected_problem}")
-
                 # Extract information for selected problem
                 env_problem = 'pro'
                 cluster_problem = st.session_state.selected_problem['cluster']
@@ -77,7 +75,7 @@ async def do_dump_project():
                         selectedheap = st.selectbox('Select type', ('', 'HeapDump', 'ThreadDump', 'HeapDump DataGrid', 'ThreadDump DataGrid'), key="opt_restart_r")
                         execute_dump(
                             optionenv=env_problem, optioncluster=cluster_problem, optionregion=region_problem,
-                            namespace=namespace_problem, pod=selectpod, delete=False,
+                            namespace=namespace_problem, pod=selectpod, delete=delete,
                             idtoken=idtoken, ldap=ldap, do_execute=selectedheap
                         )
             else:
